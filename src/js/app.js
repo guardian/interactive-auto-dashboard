@@ -33,7 +33,9 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
 
     svg.attr("width",outerwidth).attr("height",outerheight);    
 
-
+    // if (selector == ".borrowing") {
+    //     var parseTime = d3time.timeParse("%b");
+    // } else 
     if (interval == "month"){
         var parseTime = d3time.timeParse("%b %Y");
     } else if (interval == "day") {
@@ -58,7 +60,7 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
             return y(d.Value);
         });
     
-        if (numberOfDataSeries == 2) {
+        if (numberOfDataSeries > 1) {
             var line2 = d3.line()
             .x(function (d) {
                 return x(d.Date);
@@ -69,14 +71,28 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
     
         }
     
+        if (numberOfDataSeries > 2) {
+            var line3 = d3.line()
+            .x(function (d) {
+                return x(d.Date);
+            })
+            .y(function (d) {
+                return y(d.Value3);
+            });
+    
+        }
+    
 
 
 
     data.map(function (d) {
         d.Date = parseTime(d.Date);
         d.Value = parseFloat(d.Value);
-        if (numberOfDataSeries == 2) {
+        if (numberOfDataSeries > 1) {
             d.Value2 = parseFloat(d.Value2);
+        }
+        if (numberOfDataSeries > 2) {
+            d.Value3 = parseFloat(d.Value3);
         }
 
     })
@@ -127,8 +143,9 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
     }
 
 
+    if (selector != ".borrowing") {
 
-    g.append("g")
+        g.append("g")
         .attr("class", "gv-brexit-tick")
         .attr("transform", "translate(0," +innerheight +")")
         .call(d3axis.axisBottom(x)
@@ -148,8 +165,8 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
                 return d.Date;
             }))
             .tickFormat(d3time.timeFormat('%b %Y')))
-
-
+    }
+ 
     g.append("g")
         .attr("class", "gv-horizontal-grid")
         .call(d3axis.axisLeft(y)
@@ -184,7 +201,7 @@ else if (chartType == "bar") {
       .attr("width", x.bandwidth())
       .attr("height", function(d) { return innerheight - y(d.Value); });
 } 
-    if (numberOfDataSeries == 2) {
+    if (numberOfDataSeries > 1) {
         g.append("path")
         .datum(data)
         .attr("fill", "none")
@@ -193,6 +210,17 @@ else if (chartType == "bar") {
         .attr("stroke-linecap", "round")
         .attr("stroke-width", 2)
         .attr("d", line2);
+    }
+
+    if (numberOfDataSeries > 2) {
+        g.append("path")
+        .datum(data)
+        .attr("fill", "none")
+        .attr("stroke", "yellow")
+        .attr("stroke-linejoin", "round")
+        .attr("stroke-linecap", "round")
+        .attr("stroke-width", 2)
+        .attr("d", line3);
     }
 
 
@@ -214,6 +242,7 @@ d3request.json(dataurl, function (d) {
     drawlinechart(alldata.unemployment, ".unemployment", 7, true, "month", "unemployment","bar",1);
     drawlinechart(alldata.wages, ".wages", 7, true, "month", "wages","bar",1);
     drawlinechart(alldata.sterling, ".sterling", 7, false, "day", "sterling","line",2);
+    drawlinechart(alldata.borrowing, ".borrowing", 7, true, "month", "borrowing","line",3);
 });
 
 

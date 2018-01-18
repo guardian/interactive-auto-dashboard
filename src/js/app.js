@@ -13,7 +13,7 @@ var dataurl = "https://interactive.guim.co.uk/docsdata-test/1mm9nd1wnyE-YOiOk26c
 
 
 
-function drawlinechart(data, selector, ticks, zeroy, interval, destination) {
+function drawlinechart(data, selector, ticks, zeroy, interval, destination, chartType,numberOfDataSeries) {
 
     var destinationdiv = window.parent.document.querySelector('figure[data-alt="' + destination +'"]');
     if (destinationdiv != null) {
@@ -25,8 +25,8 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination) {
     var svg = select("svg"+selector), margin = { top: 20, right: 20, bottom: 20, left: 20 },
         // width = +svg.attr("width") - margin.left - margin.right,
         // height = +svg.attr("height") - margin.top - margin.bottom,
-        outerwidth = destwidth,
-        outerheight = destwidth,
+        outerwidth = destwidth ? destwidth : 500,
+        outerheight = destwidth ? destwidth : 500,
         innerheight = outerheight - margin.top - margin.bottom,
         innerwidth = outerwidth - margin.left - margin.right,
         g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -40,8 +40,12 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination) {
         var parseTime = d3time.timeParse('%e-%b-%Y')
     }
 
-    var x = d3scale.scaleTime()
+    if (chartType == "line") {
+        var x = d3scale.scaleTime()
         .rangeRound([0, innerwidth]);
+    } else if (chartType == "bar") {
+        var x = d3scale.scaleBand().rangeRound([0, innerwidth]).padding(0.1)
+    }
 
     var y = d3scale.scaleLinear()
         .rangeRound([innerheight, 0]);
@@ -53,11 +57,28 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination) {
         .y(function (d) {
             return y(d.Value);
         });
+    
+        if (numberOfDataSeries == 2) {
+            var line2 = d3.line()
+            .x(function (d) {
+                return x(d.Date);
+            })
+            .y(function (d) {
+                return y(d.Value2);
+            });
+    
+        }
+    
+
 
 
     data.map(function (d) {
         d.Date = parseTime(d.Date);
         d.Value = parseFloat(d.Value);
+        if (numberOfDataSeries == 2) {
+            d.Value2 = parseFloat(d.Value2);
+        }
+
     })
 
     var junes = data.filter(function (d) {
@@ -84,12 +105,24 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination) {
         })
     }
 
-
-    x.domain(d3array.extent(data, function (d) { return d.Date; }));
+    if (chartType == "line") {
+        x.domain(d3array.extent(data, function (d) { return d.Date; }));
+    } else if (chartType == "bar") {
+        x.domain(data.map(function(d) { return d.Date; }));
+    }
+    
     if (zeroy == true) {
         y.domain([0, d3array.max(data, function (d) { return d.Value; })]);
     } else {
-        y.domain(d3array.extent(data, function (d) { return d.Value; }));
+        if (numberOfDataSeries == 1) {
+            y.domain(d3array.extent(data, function (d) { return d.Value; }));
+        }
+        else if (numberOfDataSeries == 2) {
+            var combineddata = data.map(function(d) {
+                return d.Value;
+            }).concat(data.map(function(d){ return d.Value2}));
+            y.domain(d3array.extent(combineddata),function(d){return d})
+        }
 
     }
 
@@ -131,7 +164,7 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination) {
         .tickFormat(""))
 
 
-
+if (chartType == "line") {
     g.append("path")
         .datum(data)
         .attr("fill", "none")
@@ -140,6 +173,28 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination) {
         .attr("stroke-linecap", "round")
         .attr("stroke-width", 2)
         .attr("d", line);
+}
+else if (chartType == "bar") {
+    g.selectAll(".bar")
+    .data(data)
+    .enter().append("rect")
+      .attr("class", "bar")
+      .attr("x", function(d) { return x(d.Date); })
+      .attr("y", function(d) { return y(d.Value); })
+      .attr("width", x.bandwidth())
+      .attr("height", function(d) { return innerheight - y(d.Value); });
+} 
+    if (numberOfDataSeries == 2) {
+        g.append("path")
+        .datum(data)
+        .attr("fill", "none")
+        .attr("stroke", "grey")
+        .attr("stroke-linejoin", "round")
+        .attr("stroke-linecap", "round")
+        .attr("stroke-width", 2)
+        .attr("d", line2);
+    }
+
 
         var graphdiv = document.querySelector(".gv-interactive"+selector);
         if (destinationdiv != null) {
@@ -149,13 +204,16 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination) {
 
 d3request.json(dataurl, function (d) {
     var alldata = d.sheets;
-    drawlinechart(alldata.cpi, ".cpi", 3, true, "month","cpi");
-    drawlinechart(alldata.retail, ".retail", 5, false, "month","retail");
-    drawlinechart(alldata.rics, ".rics", 3, false, "month","rics");
-    drawlinechart(alldata.pmi, ".pmi", 5, false, "month","pmi");
-    drawlinechart(alldata.trade, ".trade", 7, false, "month", "trade");
-    drawlinechart(alldata.ftse100, ".ftse100", 7, false, "day", "ftse100");
-    drawlinechart(alldata.ftse250, ".ftse250", 7, false, "day", "ftse250");
+    drawlinechart(alldata.cpi, ".cpi", 3, true, "month","cpi","line",1);
+    drawlinechart(alldata.retail, ".retail", 5, false, "month","retail","line",1);
+    drawlinechart(alldata.rics, ".rics", 3, false, "month","rics","line",1);
+    drawlinechart(alldata.pmi, ".pmi", 5, false, "month","pmi","line",1);
+    drawlinechart(alldata.trade, ".trade", 7, false, "month", "trade","line",1);
+    drawlinechart(alldata.ftse100, ".ftse100", 7, false, "day", "ftse100","line",1);
+    drawlinechart(alldata.ftse250, ".ftse250", 7, false, "day", "ftse250","line",1);
+    drawlinechart(alldata.unemployment, ".unemployment", 7, true, "month", "unemployment","bar",1);
+    drawlinechart(alldata.wages, ".wages", 7, true, "month", "wages","bar",1);
+    drawlinechart(alldata.sterling, ".sterling", 7, false, "day", "sterling","line",2);
 });
 
 

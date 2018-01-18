@@ -8,6 +8,10 @@
 //@import "fullscreen";
 
 .gv-interactive {
+
+    .bar {
+        fill: #cc0a11;
+    }
    
     h3 {
         @include fs-bodyHeading(2);

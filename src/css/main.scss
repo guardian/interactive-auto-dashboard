@@ -1,0 +1,70 @@
+@import "mq";
+@import "fonts";
+
+// Uncomment for embeds
+//@import "embed";
+
+// Uncomment for full screen (including immersive article main media)
+//@import "fullscreen";
+
+.gv-interactive {
+   
+    h3 {
+        @include fs-bodyHeading(2);
+        font-weight: 700;
+    }
+
+    svg {
+        height: 300px;
+        width: 500px;
+    }
+
+    .tick {
+        text {
+            @include fs-data(4);
+            fill: #bdbdbd;
+        }
+    }
+
+
+    .gv-brexit-tick > .tick {
+        text {
+            transform: translateY(6px);
+            font-weight: bold;
+            fill: #111;
+        }
+        line {
+            stroke: #111;
+            }
+
+    }
+
+    .gv-zero-line > .tick {
+        line {
+            stroke: #aaa;
+            }
+
+    }
+
+    .gv-horizontal-grid > .tick {
+        text {
+            transform: translate(15px, -10px);
+            fill: #bdbdbd;
+        }
+        line {
+            stroke: #bdbdbd;
+            }
+    
+    }
+
+    .gv-horizontal-grid > .tick{
+      
+        line {
+            stroke-dasharray: 1 1;
+        }
+    }
+
+    .domain {
+        stroke: #fff;
+    }
+}

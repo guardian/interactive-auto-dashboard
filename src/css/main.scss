@@ -8,15 +8,11 @@
 //@import "fullscreen";
 
 .gv-interactive {
+    height: 750px;
    
     h3 {
         @include fs-bodyHeading(2);
         font-weight: 700;
-    }
-
-    svg {
-        height: 300px;
-        width: 500px;
     }
 
     .tick {
@@ -65,6 +61,6 @@
     }
 
     .domain {
-        stroke: #fff;
+        display: none;
     }
 }

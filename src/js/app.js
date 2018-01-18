@@ -17,11 +17,13 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination) {
 
     var svgselector = ("svg" + selector);
 
-    var svg = select(svgselector), margin = { top: 20, right: 20, bottom: 30, left: 10 },
+    var svg = select(svgselector), margin = { top: 20, right: 20, bottom: 20, left: 20 },
         // width = +svg.attr("width") - margin.left - margin.right,
         // height = +svg.attr("height") - margin.top - margin.bottom,
-        width = 500,
-        height = 300,
+        outerwidth = 500,
+        outerheight = 500,
+        innerheight = outerheight - margin.top - margin.bottom,
+        innerwidth = outerwidth - margin.left - margin.right,
         g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
     if (interval == "month"){
@@ -31,10 +33,10 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination) {
     }
 
     var x = d3scale.scaleTime()
-        .rangeRound([0, width]);
+        .rangeRound([0, innerwidth]);
 
     var y = d3scale.scaleLinear()
-        .rangeRound([height, 0]);
+        .rangeRound([innerheight, 0]);
 
     var line = d3.line()
         .x(function (d) {
@@ -87,19 +89,19 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination) {
 
     g.append("g")
         .attr("class", "gv-brexit-tick")
-        .attr("transform", "translate(0,300)")
+        .attr("transform", "translate(0," +innerheight +")")
         .call(d3axis.axisBottom(x)
             .tickValues(june2016.map(function (d) {
                 return d.Date;
             })).
             tickFormat(d3time.timeFormat('%b %Y'))
-            .tickSize(-height))
+            .tickSize(-innerheight))
     // .select(".domain")
     //   .remove();
 
 
     g.append("g")
-        .attr("transform", "translate(0,300)")
+        .attr("transform", "translate(0," +innerheight +")")
         .call(d3axis.axisBottom(x)
             .tickValues(june2017.map(function (d) {
                 return d.Date;
@@ -111,13 +113,15 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination) {
         .attr("class", "gv-horizontal-grid")
         .call(d3axis.axisLeft(y)
             .ticks(ticks)
-            .tickSize(-width))
+            .tickSize(-innerwidth))
 
     g.append("g")
         .attr("class", "gv-zero-line")
         .call(d3axis.axisLeft(y)
             .tickValues([0])
-            .tickSize(-width))
+            .tickSize(-innerwidth)
+        .tickFormat(""))
+
 
 
     g.append("path")

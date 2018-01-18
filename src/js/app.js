@@ -15,14 +15,17 @@ var dataurl = "https://interactive.guim.co.uk/docsdata-test/1mm9nd1wnyE-YOiOk26c
 
 function drawlinechart(data, selector, ticks, zeroy, interval, destination) {
 
-    var svgselector = ("svg" + selector);
+    var destinationdiv = window.parent.document.querySelector('figure[data-alt="' + destination +'"]');
+    if (destinationdiv != null) {
+        var destwidth = destinationdiv.clientWidth;
+    }
 
-    var svg = select(svgselector), margin = { top: 20, right: 20, bottom: 30, left: 10 },
-        // width = +svg.attr("width") - margin.left - margin.right,
-        // height = +svg.attr("height") - margin.top - margin.bottom,
-        width = 500,
-        height = 300,
+
+    var svg = select("svg" + selector), margin = { top: 20, right: 20, bottom: 20, left: 20 },
+        width = destwidth - margin.left - margin.right,
+        height = 490,
         g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
 
     if (interval == "month"){
         var parseTime = d3time.timeParse("%b %Y");
@@ -130,23 +133,21 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination) {
         .attr("d", line);
 
         var graphdiv = document.querySelector(".gv-interactive"+selector);
-        var destinationdiv = window.parent.document.querySelector('figure');
-        console.log(destinationdiv)
-        destinationdiv.appendChild(graphdiv);
-
+            if (destinationdiv != null) {
+                destinationdiv.appendChild(graphdiv);        
+            }
+     
 }
 
 d3request.json(dataurl, function (d) {
     var alldata = d.sheets;
-    drawlinechart(alldata.cpi, ".cpi", 3, true, "month","interactive-slot-1");
-    drawlinechart(alldata.retail, ".retail", 5, false, "month");
-    drawlinechart(alldata.rics, ".rics", 3, false, "month");
-    drawlinechart(alldata.pmi, ".pmi", 5, false, "month");
-    drawlinechart(alldata.trade, ".trade", 7, false, "month");
-    drawlinechart(alldata.ftse100, ".ftse100", 7, false, "day");
-    drawlinechart(alldata.ftse250, ".ftse250", 7, false, "day");
-
-
+    drawlinechart(alldata.cpi, ".cpi", 3, true, "month","cpi");
+    drawlinechart(alldata.retail, ".retail", 5, false, "month","retail");
+    drawlinechart(alldata.rics, ".rics", 3, false, "month","rics");
+    drawlinechart(alldata.pmi, ".pmi", 5, false, "month","pmi");
+    drawlinechart(alldata.trade, ".trade", 7, false, "month", "trade");
+    drawlinechart(alldata.ftse100, ".ftse100", 7, false, "day", "ftse100");
+    drawlinechart(alldata.ftse250, ".ftse250", 7, false, "day", "ftse250");
 });
 
 

@@ -22,7 +22,7 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
 
     console.log(destwidth)
 
-    var svg = select("svg"+selector), margin = { top: 20, right: 20, bottom: 20, left: 20 },
+    var svg = select("svg"+selector), margin = { top: 20, right: 20, bottom: 20, left: 40 },
         // width = +svg.attr("width") - margin.left - margin.right,
         // height = +svg.attr("height") - margin.top - margin.bottom,
         outerwidth = destwidth ? destwidth : 500,
@@ -169,15 +169,21 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
  
     g.append("g")
         .attr("class", "gv-horizontal-grid")
+        .attr("transform","translate(-40,0)")
         .call(d3axis.axisLeft(y)
             .ticks(ticks)
-            .tickSize(-innerwidth))
+            .tickSize(
+                (-innerwidth) - 40
+            ))
 
     g.append("g")
         .attr("class", "gv-zero-line")
+        .attr("transform","translate(-40,0)")
         .call(d3axis.axisLeft(y)
             .tickValues([0])
-            .tickSize(-innerwidth)
+            .tickSize(
+                (-innerwidth) - 40
+            )
         .tickFormat(""))
 
 

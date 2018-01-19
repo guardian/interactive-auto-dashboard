@@ -47,21 +47,27 @@
 
     .gv-horizontal-grid > .tick {
         text {
-            transform: translate(15px, -10px);
+            transform: translate(20px, -10px);
             fill: #bdbdbd;
         }
         line {
             stroke: #bdbdbd;
+            stroke-dasharray: 1 1;
+
             }
-    
     }
 
-    .gv-horizontal-grid > .tick{
-      
-        line {
-            stroke-dasharray: 1 1;
-        }
-    }
+    .ftse100 .gv-horizontal-grid > .tick {
+        text {
+            transform: translate(40px, -10px);
+            fill: #bdbdbd;
+        }}
+
+        .ftse250 .gv-horizontal-grid > .tick {
+            text {
+                transform: translate(48px, -10px);
+                fill: #bdbdbd;
+            }}
 
     .domain {
         display: none;

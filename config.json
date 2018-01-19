@@ -1,5 +1,13 @@
 {
-    "title": "Auto Brexit dashboard",
+    "title": "Auto Brexit dashboard January",
     "docData": "",
-    "path": "2018/01/brexit-dashboard-auto"
+    "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1mm9nd1wnyE-YOiOk26cN-jhxqUuRWb1eFOrnnKqte14.json",
+    "path": "2018/01/brexit-dashboard-auto",
+    "previousEditions" : [ {
+        "title": "Auto Brexit dashboard January",
+        "docData": "",
+        "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1mm9nd1wnyE-YOiOk26cN-jhxqUuRWb1eFOrnnKqte14.json",
+        "path": "2018/01/brexit-dashboard-auto"
+    }
+    ]
 }

@@ -9,10 +9,34 @@
 
 .gv-interactive {
 
-    .bar {
-        fill: #cc0a11;
+    .gv-key {
+        margin-top: 0px;
     }
-   
+
+    span {
+        @include fs-data(4);
+        margin-right: 20px;
+    }
+    .gv-blob {
+        display: inline-block;
+        width: 7px;
+        height: 11px;
+        margin-right: 4px;
+        border-radius: 2px; 
+
+        &.gbpeur,&.ad2016 {
+            background-color: #056da1;
+        }
+
+        &.gbpusd,&.ad2015 {
+            background-color: #cc0a11;
+        }
+        &.ad2017 {
+            background-color: #ed6300;
+        }
+    }
+
+    
     h3 {
         @include fs-bodyHeading(2);
         font-weight: 700;
@@ -47,7 +71,7 @@
 
     .gv-horizontal-grid > .tick {
         text {
-            transform: translate(20px, -10px);
+            transform: translate(22px, -10px);
             fill: #bdbdbd;
         }
         line {
@@ -63,11 +87,31 @@
             fill: #bdbdbd;
         }}
 
-        .ftse250 .gv-horizontal-grid > .tick {
-            text {
-                transform: translate(48px, -10px);
-                fill: #bdbdbd;
-            }}
+    .ftse250 .gv-horizontal-grid > .tick {
+        text {
+            transform: translate(48px, -10px);
+            fill: #bdbdbd;
+        }}
+
+    .sterling .gv-horizontal-grid > .tick {
+        text {
+            transform: translate(28px, -10px);
+            fill: #bdbdbd;
+        }}
+
+
+    .unemployment .gv-brexit-tick {
+        line {
+            display: none;
+        }
+    }
+
+    .wages .gv-brexit-tick {
+        line {
+            display: none;
+        }
+    }
+
 
     .domain {
         display: none;

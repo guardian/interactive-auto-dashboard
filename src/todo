@@ -1,11 +1,30 @@
-getting chart to start a few pixels in and thereby clear the way for grid, esp for bars
-keys for multi-line graphs
+
+
+
+√ getting chart to start a few pixels in and thereby clear the way for grid, esp for bars
+
+√ pick out brexit month in bar charts
+√ remove Brexit tick height in bar charts
+
+√ subheads for all charts
+√ keys for multi-line graphs
+√ bottom axis for borrowing chart
+
+√ deal with empty values in borrowing chart
+√ proper colours in borrowing chart
+
+do something to relieve jumps
+
+
 add Jan to scale
+
 bold 50 line on PMI
-pick out brexit month in bar charts
-bottom axis for borrowing chart
-deal with empty values in borrowing chart
 worry about trade balance and zero (and possibility that it may one day be positive)
 make all charts displaynone until they're in place
 
 
+New colour scheme
+– cc0a11 primary / positive
+– 056da1 secondary / negative
+– ed6300 tertiary
+– b3b3b4 neutral

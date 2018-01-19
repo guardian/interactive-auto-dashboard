@@ -22,7 +22,7 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
         // width = +svg.attr("width") - margin.left - margin.right,
         // height = +svg.attr("height") - margin.top - margin.bottom,
         outerwidth = destwidth ? destwidth : 500,
-        outerheight = destwidth ? destwidth : 500,
+        outerheight = destwidth ? destwidth * 0.61 : 500 * 0.61,
         innerheight = outerheight - margin.top - margin.bottom,
         innerwidth = outerwidth - margin.left - margin.right,
         g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -197,10 +197,8 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
         g.append("g")
             .attr("transform", "translate(0," + innerheight + ")")
             .call(d3axis.axisBottom(x)
-                .tickValues(data.map(function (d) {
-                    return d.Date;
-                }))
-                .tickFormat(d3time.timeFormat('%b')))
+            .ticks(5)
+            .tickFormat(d3time.timeFormat('%b')))
 
     }
 
@@ -209,7 +207,11 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
         g.append("path")
             .datum(data)
             .attr("fill", "none")
-            .attr("stroke", "#cc0a11")
+            .attr("stroke", function() { 
+                if (selector == ".borrowing") {
+                    return "grey";
+                } else {return "#cc0a11" }  
+            })
             .attr("stroke-linejoin", "round")
             .attr("stroke-linecap", "round")
             .attr("stroke-width", 2)
@@ -249,7 +251,7 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
         g.append("path")
             .datum(thirdyear)
             .attr("fill", "none")
-            .attr("stroke", "#ed6300")
+            .attr("stroke", "#cc0a11")
             .attr("stroke-linejoin", "round")
             .attr("stroke-linecap", "round")
             .attr("stroke-width", 2)
@@ -260,6 +262,7 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
     var graphdiv = document.querySelector(".gv-interactive" + selector);
     if (destinationdiv != null) {
         destinationdiv.appendChild(graphdiv);
+        graphdiv.classList.add('placed')
     }
 }
 

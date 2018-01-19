@@ -9,7 +9,23 @@
 
 .gv-interactive {
 
+    // RESTORE THIS BEFORE GO-LIVE
+ // display: none;
+    @include fs-headline(2);
+    color: #767676;
+    font-size: 14px;
+    border-top: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
+    padding-bottom: 4px;
+
+
+
+    &.placed {
+        display: block;
+    }
+
     .gv-key {
+        @include fs-textSans(2);
         margin-top: 0px;
     }
 
@@ -28,18 +44,22 @@
             background-color: #056da1;
         }
 
-        &.gbpusd,&.ad2015 {
+        &.gbpusd,&.ad2017 {
             background-color: #cc0a11;
         }
-        &.ad2017 {
-            background-color: #ed6300;
+        &.ad2015 {
+            background-color: #b3b3b4;
         }
     }
 
     
     h3 {
-        @include fs-bodyHeading(2);
-        font-weight: 700;
+        color: #000;
+        font-family: 'GH Guardian Headline', Georgia, serif;
+        //        font-weight: 600;
+        font-size: 18px;
+        line-height: 24px;
+        margin-bottom: 12px;
     }
 
     .tick {
@@ -115,5 +135,13 @@
 
     .domain {
         display: none;
+    }
+
+    .gv-source {
+        font-size: 12px;
+    line-height: 16px;
+    margin-top: 8px;
+    font-family: 'Guardian Text Sans Web';
+    color: #767676;
     }
 }

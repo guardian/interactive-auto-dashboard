@@ -268,15 +268,15 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
 
 d3request.json(dataurl, function (d) {
     var alldata = d.sheets;
+    drawlinechart(alldata.sterling, ".sterling", 5, false, "day", "sterling", "line", 2);
+    drawlinechart(alldata.ftse100, ".ftse100", 5, false, "day", "ftse100", "line", 1);
+    drawlinechart(alldata.ftse250, ".ftse250", 5, false, "day", "ftse250", "line", 1);
     drawlinechart(alldata.cpi, ".cpi", 3, true, "month", "cpi", "line", 1);
     drawlinechart(alldata.retail, ".retail", 5, false, "month", "retail", "line", 1);
     drawlinechart(alldata.rics, ".rics", 3, false, "month", "rics", "line", 1);
     drawlinechart(alldata.pmi, ".pmi", 5, false, "month", "pmi", "line", 1);
-    drawlinechart(alldata.trade, ".trade", 7, false, "month", "trade", "line", 1);
-    drawlinechart(alldata.ftse100, ".ftse100", 7, false, "day", "ftse100", "line", 1);
-    drawlinechart(alldata.ftse250, ".ftse250", 7, false, "day", "ftse250", "line", 1);
-    drawlinechart(alldata.unemployment, ".unemployment", 7, true, "month", "unemployment", "bar", 1);
-    drawlinechart(alldata.wages, ".wages", 7, true, "month", "wages", "bar", 1);
-    drawlinechart(alldata.sterling, ".sterling", 7, false, "day", "sterling", "line", 2);
-    drawlinechart(alldata.borrowing, ".borrowing", 7, true, "month", "borrowing", "line", 3);
+    drawlinechart(alldata.trade, ".trade", 5, false, "month", "trade", "line", 1);
+    drawlinechart(alldata.unemployment, ".unemployment", 5, true, "month", "unemployment", "bar", 1);
+    drawlinechart(alldata.wages, ".wages", 5, true, "month", "wages", "bar", 1);
+    drawlinechart(alldata.borrowing, ".borrowing", 5, true, "month", "borrowing", "line", 3);
 });

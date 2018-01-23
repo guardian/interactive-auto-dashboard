@@ -13,11 +13,11 @@
 √ deal with empty values in borrowing chart
 √ proper colours in borrowing chart
 
-style subheads and sources
+√ style subheads and sources
 
-fix height of showcase sterling chart
+√ fix height of showcase sterling chart
 
-change height of other charts to be 0.61803398875 * width?
+√ change height of other charts to be 0.61803398875 * width?
 
 do something to relieve jumps
 

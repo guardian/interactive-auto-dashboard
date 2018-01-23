@@ -11,7 +11,8 @@ import config from './../../config.json'
 
 var dataurl = config.docDataUrl;
 
-function drawlinechart(data, selector, ticks, zeroy, interval, destination, chartType, numberOfDataSeries) {
+function drawlinechart(data, selector, ticks, zeroy, interval, destination, chartType, numberOfDataSeries,columnNameArray) {
+
 
     var destinationdiv = window.parent.document.querySelector('figure[data-alt="' + destination + '"]');
     if (destinationdiv != null) {
@@ -19,8 +20,6 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
     }
 
     var svg = select("svg" + selector), margin = { top: 20, right: 20, bottom: 20, left: 40 },
-        // width = +svg.attr("width") - margin.left - margin.right,
-        // height = +svg.attr("height") - margin.top - margin.bottom,
         outerwidth = destwidth ? destwidth : 500,
         outerheight = destwidth ? destwidth * 0.61 : 500 * 0.61,
         innerheight = outerheight - margin.top - margin.bottom,
@@ -38,6 +37,24 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
         var parseTime = d3time.timeParse('%e-%b-%Y')
     }
 
+    data.map(function (d) {
+        //only convert it to a date if it isn't already a date
+        if (Object.prototype.toString.call(d.Date) !== '[object Date]'){
+            d.Date = parseTime(d.Date);
+        }
+        // convert values to numbers for as many values as there are
+        // and delete any values that won't be coerced to numbers
+        for (var i = 1; i < Object.keys(d).length; i++) {
+            if (!isNaN( parseFloat(d[Object.keys(d)[i]]))
+            ) {d[Object.keys(d)[i]] = parseFloat(d[Object.keys(d)[i]]);
+        }
+            else {
+                delete  d[Object.keys(d)[i]];
+            }
+        }
+
+    })
+
     if (chartType == "line") {
         var x = d3scale.scaleTime()
             .rangeRound([0, innerwidth]);
@@ -53,7 +70,7 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
             return x(d.Date);
         })
         .y(function (d) {
-            return y(d.Value);
+            return y(d[columnNameArray[0]]);
         });
 
     if (numberOfDataSeries > 1) {
@@ -62,7 +79,7 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
                 return x(d.Date);
             })
             .y(function (d) {
-                return y(d.Value2);
+                return y(d[columnNameArray[1]]);
             });
 
     }
@@ -70,13 +87,13 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
     if (numberOfDataSeries > 2) {
         var line3 = d3.line()
             .x(function (d) {
-                if (d.Value3){
+                if (d[columnNameArray[2]]){
                     return x(d.Date);
                 }
             })
             .y(function (d) {
-                if (d.Value3) {
-                    return y(d.Value3);
+                if (d[columnNameArray[2]]) {
+                    return y(d[columnNameArray[2]]);
                 }
             });
 
@@ -85,28 +102,11 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
 
 
 
-    data.map(function (d) {
-        d.Date = parseTime(d.Date);
-        d.Value = parseFloat(d.Value);
-        if (numberOfDataSeries > 1) {
-            d.Value2 = parseFloat(d.Value2);
-        }
-        if (numberOfDataSeries > 2) {
-            if (!isNaN(parseFloat(d.Value3))) {
-                d.Value3 = parseFloat(d.Value3);
-            }
-            else {
-                delete d.Value3;
-            }
-        }
-
-    })
-
-
     // var junes = data.filter(function (d) {
     //     return d.Date.getMonth() == 5;
     // })
 
+ 
     if (interval == "month") {
         var june2016 = data.filter(function (d) {
             return d.Date.getMonth() == 5 && d.Date.getFullYear() == 2016;
@@ -133,16 +133,19 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
         x.domain(data.map(function (d) { return d.Date; }));
     }
 
+
+
     if (zeroy == true) {
-        y.domain([0, d3array.max(data, function (d) { return d.Value; })]);
+        y.domain([0, d3array.max(data, function (d) {
+             return d[columnNameArray[0]]; })]);
     } else {
         if (numberOfDataSeries == 1) {
-            y.domain(d3array.extent(data, function (d) { return d.Value; }));
+            y.domain(d3array.extent(data, function (d) { return d[columnNameArray[0]]; }));
         }
         else if (numberOfDataSeries == 2) {
             var combineddata = data.map(function (d) {
-                return d.Value;
-            }).concat(data.map(function (d) { return d.Value2 }));
+                return d[columnNameArray[0]];
+            }).concat(data.map(function (d) { return d[columnNameArray[1]] }));
             y.domain(d3array.extent(combineddata), function (d) { return d })
         }
 
@@ -223,9 +226,9 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
             .enter().append("rect")
             .attr("class", "bar")
             .attr("x", function (d) { return x(d.Date); })
-            .attr("y", function (d) { return y(d.Value); })
+            .attr("y", function (d) { return y(d[columnNameArray[0]]); })
             .attr("width", x.bandwidth())
-            .attr("height", function (d) { return innerheight - y(d.Value); })
+            .attr("height", function (d) { return innerheight - y(d[columnNameArray[0]]); })
             .attr("fill", function (d) {
                 if (d.Date.getMonth() == 5 && d.Date.getFullYear() == 2016) {
                     return "#b3b3b4";
@@ -262,21 +265,31 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
     var graphdiv = document.querySelector(".gv-interactive" + selector);
     if (destinationdiv != null) {
         destinationdiv.appendChild(graphdiv);
-        graphdiv.classList.add('placed')
+        graphdiv.classList.add('placed');
+    }
+    if (window.location.href.indexOf('localhost') > -1) {
+        graphdiv.classList.add('placed');
     }
 }
 
 d3request.json(dataurl, function (d) {
     var alldata = d.sheets;
-    drawlinechart(alldata.sterling, ".sterling", 5, false, "day", "sterling", "line", 2);
-    drawlinechart(alldata.ftse100, ".ftse100", 5, false, "day", "ftse100", "line", 1);
-    drawlinechart(alldata.ftse250, ".ftse250", 5, false, "day", "ftse250", "line", 1);
-    drawlinechart(alldata.cpi, ".cpi", 3, true, "month", "cpi", "line", 1);
-    drawlinechart(alldata.retail, ".retail", 5, false, "month", "retail", "line", 1);
-    drawlinechart(alldata.rics, ".rics", 3, false, "month", "rics", "line", 1);
-    drawlinechart(alldata.pmi, ".pmi", 5, false, "month", "pmi", "line", 1);
-    drawlinechart(alldata.trade, ".trade", 5, false, "month", "trade", "line", 1);
-    drawlinechart(alldata.unemployment, ".unemployment", 5, true, "month", "unemployment", "bar", 1);
-    drawlinechart(alldata.wages, ".wages", 5, true, "month", "wages", "bar", 1);
-    drawlinechart(alldata.borrowing, ".borrowing", 5, true, "month", "borrowing", "line", 3);
+
+
+    //MEMO re arguments
+    //data, selector, ticks, zeroy, interval, destination, chartType, numberOfDataSeries
+    // ie: 'sheet', target div, number of ticks, set Y axis to zero?, timescale, target div again without the dot, type of chart, number of values, name of column)
+
+       drawlinechart(alldata.cpi, ".cpi", 3, true, "month", "cpi", "line", 1, ["Value"]);
+      drawlinechart(alldata.tradeAndRetail, ".retail", 5, false, "month", "retail", "line", 1, ["retail"]);
+      drawlinechart(alldata.pmiRics, ".rics", 3, false, "month", "rics", "line", 1,["rics"]);
+       drawlinechart(alldata.pmiRics, ".pmi", 5, false, "month", "pmi", "line", 1,["pmi"]);
+      drawlinechart(alldata.tradeAndRetail, ".trade", 7, false, "month", "trade", "line", 1,["tradebalance"]);
+     drawlinechart(alldata.financials, ".ftse100", 7, false, "day", "ftse100", "line", 1,["ftse100"]);
+     drawlinechart(alldata.unemploymentWages, ".wages", 7, true, "month", "wages", "bar", 1,["wages"]);
+      drawlinechart(alldata.unemploymentWages, ".unemployment", 7, true, "month", "unemployment", "bar", 1,["unemployment"]);
+     drawlinechart(alldata.financials, ".sterling", 7, false, "day", "sterling", "line", 2,["dollar","euro"]);
+   drawlinechart(alldata.borrowing, ".borrowing", 7, true, "month", "borrowing", "line", 3,["Value","Value2","Value3"]);
+   drawlinechart(alldata.financials, ".ftse250", 7, false, "day", "ftse250", "line", 1,["ftse250"]);
+
 });

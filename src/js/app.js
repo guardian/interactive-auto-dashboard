@@ -17,6 +17,9 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
     var destinationdiv = window.parent.document.querySelector('figure[data-alt="' + destination + '"]');
     if (destinationdiv != null) {
         var destwidth = destinationdiv.clientWidth;
+        var altdestwidth = destinationdiv.getBoundingClientRect().width;
+        // console.log(`destwidth: ${destwidth}, altdestwidth: ${altdestwidth}`);
+
     }
 
     var svg = select("svg" + selector), margin = { top: 20, right: 20, bottom: 20, left: 40 },

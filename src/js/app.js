@@ -281,18 +281,18 @@ d3request.json(dataurl, function (d) {
 
     //MEMO re arguments
     //data, selector, ticks, zeroy, interval, destination, chartType, numberOfDataSeries
-    // ie: 'sheet', target div, number of ticks, set Y axis to zero?, timescale, target div again without the dot, type of chart, number of values, name of column)
+    // ie: 'sheet', target div, number of ticks, set Y axis to zero?, timescale, target div again without the dot, type of chart, number of values, name of columns)
 
        drawlinechart(alldata.cpi, ".cpi", 3, true, "month", "cpi", "line", 1, ["Value"]);
       drawlinechart(alldata.tradeAndRetail, ".retail", 5, false, "month", "retail", "line", 1, ["retail"]);
       drawlinechart(alldata.pmiRics, ".rics", 3, false, "month", "rics", "line", 1,["rics"]);
        drawlinechart(alldata.pmiRics, ".pmi", 5, false, "month", "pmi", "line", 1,["pmi"]);
       drawlinechart(alldata.tradeAndRetail, ".trade", 7, false, "month", "trade", "line", 1,["tradebalance"]);
-     drawlinechart(alldata.financials, ".ftse100", 7, false, "day", "ftse100", "line", 1,["ftse100"]);
+     drawlinechart(alldata.financials, ".ftse100", 6, false, "day", "ftse100", "line", 1,["ftse100"]);
      drawlinechart(alldata.unemploymentWages, ".wages", 7, true, "month", "wages", "bar", 1,["wages"]);
       drawlinechart(alldata.unemploymentWages, ".unemployment", 7, true, "month", "unemployment", "bar", 1,["unemployment"]);
-     drawlinechart(alldata.financials, ".sterling", 7, false, "day", "sterling", "line", 2,["dollar","euro"]);
+     drawlinechart(alldata.financials, ".sterling", 6, false, "day", "sterling", "line", 2,["dollar","euro"]);
    drawlinechart(alldata.borrowing, ".borrowing", 7, true, "month", "borrowing", "line", 3,["Value","Value2","Value3"]);
-   drawlinechart(alldata.financials, ".ftse250", 7, false, "day", "ftse250", "line", 1,["ftse250"]);
+   drawlinechart(alldata.financials, ".ftse250", 6, false, "day", "ftse250", "line", 1,["ftse250"]);
 
 });

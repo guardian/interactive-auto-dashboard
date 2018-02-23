@@ -19,6 +19,9 @@
     padding-bottom: 4px;
 
 
+    
+
+
 
     &.placed {
         display: block;
@@ -27,6 +30,10 @@
     .gv-key {
         @include fs-textSans(2);
         margin-top: 0px;
+    }
+
+    svg {
+        max-width: 100%;
     }
 
     span {

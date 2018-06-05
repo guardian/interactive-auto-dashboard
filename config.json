@@ -1,9 +1,15 @@
 {
-    "title": "Auto Brexit dashboard May",
+    "title": "Auto Brexit dashboard June",
     "docData": "",
-    "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1R5eolAhAiCND_IsJd9qYncOvq37NTtNRYh38wqol5N8.json",
-    "path": "2018/05/brexit-dashboard-auto",
+    "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1xegifECIg7fqnRhqX4KJag-b6Tc35O3jZadrbampEFo.json",
+    "path": "2018/06/brexit-dashboard-auto",
     "previousEditions" : [ 
+        {
+            "title": "Auto Brexit dashboard May",
+            "docData": "",
+            "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1R5eolAhAiCND_IsJd9qYncOvq37NTtNRYh38wqol5N8.json",
+            "path": "2018/05/brexit-dashboard-auto"        
+        },
         {
             "title": "Auto Brexit dashboard April",
             "docData": "",

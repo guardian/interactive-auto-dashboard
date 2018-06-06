@@ -103,6 +103,21 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
 
     }
 
+    if (numberOfDataSeries > 3) {
+        var line4 = d3.line()
+            .x(function (d) {
+                if (d[columnNameArray[3]]){
+                    return x(d.Date);
+                }
+            })
+            .y(function (d) {
+                if (d[columnNameArray[3]]) {
+                    return y(d[columnNameArray[3]]);
+                }
+            });
+
+    }
+
 
 
 
@@ -216,7 +231,7 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
             .attr("fill", "none")
             .attr("stroke", function() { 
                 if (selector == ".borrowing") {
-                    return "grey";
+                    return "#999999";
                 } else {return "#cc0a11" }  
             })
             .attr("stroke-linejoin", "round")
@@ -243,7 +258,11 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
         g.append("path")
             .datum(data)
             .attr("fill", "none")
-            .attr("stroke", "#056da1")
+            .attr("stroke", function() { 
+                if (selector == ".borrowing") {
+                    return "#333333";
+                } else {return "#056da1" }  
+            })
             .attr("stroke-linejoin", "round")
             .attr("stroke-linecap", "round")
             .attr("stroke-width", 2)
@@ -257,6 +276,21 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
         })
         g.append("path")
             .datum(thirdyear)
+            .attr("fill", "none")
+            .attr("stroke", "#056da1")
+            .attr("stroke-linejoin", "round")
+            .attr("stroke-linecap", "round")
+            .attr("stroke-width", 2)
+            .attr("d", line3);
+    }
+
+    if (numberOfDataSeries > 3) {
+
+        var fourthyear = data.filter(function(d) {
+            return d.Value4;
+        })
+        g.append("path")
+            .datum(fourthyear)
             .attr("fill", "none")
             .attr("stroke", "#cc0a11")
             .attr("stroke-linejoin", "round")
@@ -293,7 +327,7 @@ d3request.json(dataurl, function (d) {
      drawlinechart(alldata.unemploymentWages, ".wages", 7, true, "month", "wages", "bar", 1,["wages"]);
       drawlinechart(alldata.unemploymentWages, ".unemployment", 7, true, "month", "unemployment", "bar", 1,["unemployment"]);
      drawlinechart(alldata.financials, ".sterling", 6, false, "day", "sterling", "line", 2,["dollar","euro"]);
-   drawlinechart(alldata.borrowing, ".borrowing", 7, true, "month", "borrowing", "line", 3,["Value","Value2","Value3"]);
+   drawlinechart(alldata.borrowing, ".borrowing", 7, true, "month", "borrowing", "line", 4,["Value","Value2","Value3","Value4"]);
    drawlinechart(alldata.financials, ".ftse250", 6, false, "day", "ftse250", "line", 1,["ftse250"]);
 
 });

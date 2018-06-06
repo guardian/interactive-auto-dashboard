@@ -47,16 +47,29 @@
         margin-right: 4px;
         border-radius: 2px; 
 
-        &.gbpeur,&.ad2016 {
+
+        &.ad2018 {
+            background-color:#cc0a11;
+        }
+        &.ad2017 {
+            background-color: #056da1;
+        }
+        &.ad2016 {
+            background-color:#333333;
+        }
+        &.ad2015 {
+            background-color:#767676;
+        }
+
+
+        &.gbpeur{
             background-color: #056da1;
         }
 
-        &.gbpusd,&.ad2017 {
+        &.gbpusd {
             background-color: #cc0a11;
         }
-        &.ad2015 {
-            background-color: #b3b3b4;
-        }
+
     }
 
     

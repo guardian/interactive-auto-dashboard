@@ -296,7 +296,7 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
             .attr("stroke-linejoin", "round")
             .attr("stroke-linecap", "round")
             .attr("stroke-width", 2)
-            .attr("d", line3);
+            .attr("d", line4);
     }
 
 

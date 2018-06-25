@@ -260,7 +260,7 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
             .attr("fill", "none")
             .attr("stroke", function() { 
                 if (selector == ".borrowing") {
-                    return "#333333";
+                    return "#f5be2c";
                 } else {return "#056da1" }  
             })
             .attr("stroke-linejoin", "round")

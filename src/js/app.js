@@ -146,6 +146,16 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
         })
     }
 
+    if (interval == "month") {
+        var june2018 = data.filter(function (d) {
+            return d.Date.getMonth() == 5 && d.Date.getFullYear() == 2018;
+        })
+    } else if (interval == "day") {
+        var june2018 = data.filter(function (d) {
+            return d.Date.getMonth() == 5 && d.Date.getFullYear() == 2018 && d.Date.getDate() == 23;
+        })
+    }
+
     if (chartType == "line") {
         x.domain(d3array.extent(data, function (d) { return d.Date; }));
     } else if (chartType == "bar") {
@@ -181,7 +191,7 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
                     return d.Date;
                 })).
                 tickFormat(d3time.timeFormat('%b %Y'))
-                .tickSize(-innerheight))
+                .tickSize(-innerheight));
         // .select(".domain")
         //   .remove();
 
@@ -192,7 +202,19 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
                 .tickValues(june2017.map(function (d) {
                     return d.Date;
                 }))
-                .tickFormat(d3time.timeFormat('%b %Y')))
+                .tickFormat(d3time.timeFormat('%b %Y')));
+
+
+        g.append("g")
+            .attr("transform", "translate(0," + innerheight + ")")
+            .call(d3axis.axisBottom(x)
+                .tickValues(june2018.map(function (d) {
+                    return d.Date;
+                }))
+                .tickFormat(d3time.timeFormat('%b %Y')));
+
+
+
     }
 
     g.append("g")

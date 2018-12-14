@@ -1,22 +1,39 @@
 {
-    "title": "Auto Brexit dashboard September",
+    "title": "Auto Brexit dashboard December 2018",
     "docData": "",
-    "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1JsBHK82GrTdslSFu6lHUULGN4PbwiJG13j5HBgMjUDM.json",
-    "path": "2018/09/brexit-dashboard-auto",
-    "previousEditions" : [ 
+    "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1Oi1JkZG1qKv35GiKFB33By5FhY31Eqn-3YsI15kkkbU.json",
+    "path": "2018/12/brexit-dashboard-auto",
+    "previousEditions": [
+        {
+            "title": "Auto Brexit dashboard November 2018",
+            "docData": "",
+            "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1xES31vgi64VWozKIAxx-uBHKBugXEFW-JkQK02QJDjM.json",
+            "path": "2018/11/brexit-dashboard-auto"    
+        },
+        {
+            "title": "Auto Brexit dashboard October 2018",
+            "docData": "",
+            "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1y_IUqCt41j1fB3AykXyCzQfiEnZJ89y4Ag5hPiYucZI.json",
+            "path": "2018/10/brexit-dashboard-auto"
+        },
+        {
+            "title": "Auto Brexit dashboard September",
+            "docData": "",
+            "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1JsBHK82GrTdslSFu6lHUULGN4PbwiJG13j5HBgMjUDM.json",
+            "path": "2018/09/brexit-dashboard-auto"
+        },
         {
             "title": "Auto Brexit dashboard August",
             "docData": "",
             "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/190l-QZDoB3ZZe0uWkAaNYQHHk7rmeFaQeNM7eaYwcho.json",
             "path": "2018/08/brexit-dashboard-auto"
         },
-
-        {        "title": "Auto Brexit dashboard July",
-        "docData": "",
-        "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/11qtagopN7uFQCmwr0twtB2oxgOI205GAFWEa55YbgEw.json",
-        "path": "2018/07/brexit-dashboard-auto"
+        {
+            "title": "Auto Brexit dashboard July",
+            "docData": "",
+            "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/11qtagopN7uFQCmwr0twtB2oxgOI205GAFWEa55YbgEw.json",
+            "path": "2018/07/brexit-dashboard-auto"
         },
-    
         {
             "title": "Auto Brexit dashboard June",
             "docData": "",
@@ -27,13 +44,13 @@
             "title": "Auto Brexit dashboard May",
             "docData": "",
             "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1R5eolAhAiCND_IsJd9qYncOvq37NTtNRYh38wqol5N8.json",
-            "path": "2018/05/brexit-dashboard-auto"        
+            "path": "2018/05/brexit-dashboard-auto"
         },
         {
             "title": "Auto Brexit dashboard April",
             "docData": "",
             "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1sQZ-BmQ1B8Lv2-jn8PNBSPysGvyiRzM-pnOR1dYxYcw.json",
-            "path": "2018/04/brexit-dashboard-auto"        
+            "path": "2018/04/brexit-dashboard-auto"
         },
         {
             "title": "Auto Brexit dashboard March",
@@ -42,16 +59,16 @@
             "path": "2018/03/brexit-dashboard-auto"
         },
         {
-        "title": "Auto Brexit dashboard January",
-        "docData": "",
-        "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1mm9nd1wnyE-YOiOk26cN-jhxqUuRWb1eFOrnnKqte14.json",
-        "path": "2018/01/brexit-dashboard-auto"
-    },
-    {
-        "title": "Auto Brexit dashboard February",
-        "docData": "",
-        "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1Dv3gZnPuRfc_Y_m_DNclWVZsxjxFmbWvysjf2x7Z-f0.json",
-        "path": "2018/02/brexit-dashboard-auto"
-    }
+            "title": "Auto Brexit dashboard January",
+            "docData": "",
+            "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1mm9nd1wnyE-YOiOk26cN-jhxqUuRWb1eFOrnnKqte14.json",
+            "path": "2018/01/brexit-dashboard-auto"
+        },
+        {
+            "title": "Auto Brexit dashboard February",
+            "docData": "",
+            "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1Dv3gZnPuRfc_Y_m_DNclWVZsxjxFmbWvysjf2x7Z-f0.json",
+            "path": "2018/02/brexit-dashboard-auto"
+        }
     ]
 }

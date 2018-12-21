@@ -118,18 +118,21 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
 
     }
 
-
-
-
-    // var junes = data.filter(function (d) {
-    //     return d.Date.getMonth() == 5;
-    // })
-
  
     if (interval == "month") {
-        var june2016 = data.filter(function (d) {
-            return d.Date.getMonth() == 5 && d.Date.getFullYear() == 2016;
-        })
+        
+        try {
+
+            var june2016 = data.filter(function (d) {
+                return d.Date.getMonth() == 5 && d.Date.getFullYear() == 2016;
+             })
+    
+            
+        } catch (err) {
+            console.log(data);
+        }
+
+
     } else if (interval == "day") {
         var june2016 = data.filter(function (d) {
             return d.Date.getMonth() == 5 && d.Date.getFullYear() == 2016 && d.Date.getDate() == 23;

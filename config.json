@@ -1,14 +1,20 @@
 {
-    "title": "Auto Brexit dashboard December 2018",
+    "title": "Auto Brexit dashboard January 2019",
     "docData": "",
-    "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1Oi1JkZG1qKv35GiKFB33By5FhY31Eqn-3YsI15kkkbU.json",
-    "path": "2018/12/brexit-dashboard-auto",
+    "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1hXBzDYmFKytsJ1MsrL9g0MPfnpWScVlOyd0mrJqszYo.json",
+    "path": "2019/01/brexit-dashboard-auto",
     "previousEditions": [
+        {
+            "title": "Auto Brexit dashboard December 2018",
+            "docData": "",
+            "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1Oi1JkZG1qKv35GiKFB33By5FhY31Eqn-3YsI15kkkbU.json",
+            "path": "2018/12/brexit-dashboard-auto"
+        },
         {
             "title": "Auto Brexit dashboard November 2018",
             "docData": "",
             "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1xES31vgi64VWozKIAxx-uBHKBugXEFW-JkQK02QJDjM.json",
-            "path": "2018/11/brexit-dashboard-auto"    
+            "path": "2018/11/brexit-dashboard-auto"
         },
         {
             "title": "Auto Brexit dashboard October 2018",
@@ -21,7 +27,8 @@
             "docData": "",
             "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1JsBHK82GrTdslSFu6lHUULGN4PbwiJG13j5HBgMjUDM.json",
             "path": "2018/09/brexit-dashboard-auto"
-        },        {
+        },
+        {
             "title": "Auto Brexit dashboard September",
             "docData": "",
             "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1JsBHK82GrTdslSFu6lHUULGN4PbwiJG13j5HBgMjUDM.json",
@@ -43,7 +50,7 @@
             "title": "Auto Brexit dashboard June",
             "docData": "",
             "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1xegifECIg7fqnRhqX4KJag-b6Tc35O3jZadrbampEFo.json",
-            "path": "2018/06/brexit-dashboard-auto" 
+            "path": "2018/06/brexit-dashboard-auto"
         },
         {
             "title": "Auto Brexit dashboard May",

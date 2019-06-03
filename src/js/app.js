@@ -118,6 +118,21 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
 
     }
 
+    if (numberOfDataSeries > 4) {
+        var line5 = d3.line()
+            .x(function (d) {
+                if (d[columnNameArray[4]]){
+                    return x(d.Date);
+                }
+            })
+            .y(function (d) {
+                if (d[columnNameArray[4]]) {
+                    return y(d[columnNameArray[4]]);
+                }
+            });
+
+    }
+
  
     if (interval == "month") {
         
@@ -317,11 +332,26 @@ function drawlinechart(data, selector, ticks, zeroy, interval, destination, char
         g.append("path")
             .datum(fourthyear)
             .attr("fill", "none")
-            .attr("stroke", "#cc0a11")
+            .attr("stroke", "rgb(0, 178, 255)")
             .attr("stroke-linejoin", "round")
             .attr("stroke-linecap", "round")
             .attr("stroke-width", 2)
             .attr("d", line4);
+    }
+
+    if (numberOfDataSeries > 4) {
+
+        var fifthyear = data.filter(function(d) {
+            return d.Value5;
+        })
+        g.append("path")
+            .datum(fifthyear)
+            .attr("fill", "none")
+            .attr("stroke", "#cc0a11")
+            .attr("stroke-linejoin", "round")
+            .attr("stroke-linecap", "round")
+            .attr("stroke-width", 2)
+            .attr("d", line5);
     }
 
 
@@ -352,7 +382,7 @@ d3request.json(dataurl, function (d) {
      drawlinechart(alldata.unemploymentWages, ".wages", 7, true, "month", "wages", "bar", 1,["wages"]);
       drawlinechart(alldata.unemploymentWages, ".unemployment", 7, true, "month", "unemployment", "bar", 1,["unemployment"]);
      drawlinechart(alldata.financials, ".sterling", 6, false, "day", "sterling", "line", 2,["dollar","euro"]);
-   drawlinechart(alldata.borrowing, ".borrowing", 7, true, "month", "borrowing", "line", 4,["Value","Value2","Value3","Value4"]);
+   drawlinechart(alldata.borrowing, ".borrowing", 7, true, "month", "borrowing", "line", 5,["Value","Value2","Value3","Value4","Value5"]);
    drawlinechart(alldata.financials, ".ftse250", 6, false, "day", "ftse250", "line", 1,["ftse250"]);
 
 });

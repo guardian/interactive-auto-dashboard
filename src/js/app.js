@@ -421,7 +421,8 @@ function drawlinechart(
         .attr("stroke-linejoin", "round")
         .attr("stroke-linecap", "round")
         .attr("stroke-width", 2)
-        .attr("d", line4);
+        .attr("d", line4)
+        .attr("id","line4");
     }
 
     if (numberOfDataSeries > 4) {
@@ -459,17 +460,18 @@ d3request.json(dataurl, function(d) {
   //data, selector, ticks, zeroy, interval, destination, chartType, numberOfDataSeries
   // ie: 'sheet', target div, number of ticks, set Y axis to zero?, timescale, target div again without the dot, type of chart, number of values, name of columns)
 
-  // drawlinechart(alldata.cpi, ".cpi", 3, true, "month", "cpi", "line", 1, ["Value"]);
-  // drawlinechart(alldata.retail, ".retail", 5, false, "month", "retail", "line", 1, ["retail"]);
-  // drawlinechart(alldata.housePrices, ".rics", 3, false, "month", "rics", "line", 1, ["value"]);
-  // drawlinechart(alldata.ftse100, ".ftse100", 6, false, "day", "ftse100", "line", 1, ["value"]);
-  // drawlinechart(alldata.unemployment, ".unemployment", 7, true, "month", "unemployment", "line", 1, ["claimantCount"]);
-  // drawlinechart(alldata.borrowing, ".borrowing", 7, true, "month", "borrowing", "line", 5, ["Value", "Value2", "Value3", "Value4", "Value5"]);
-  //    drawlinechart(alldata.pmiRics, ".pmi", 5, false, "month", "pmi", "line", 2, ["China","US","UK","Eurozone"]);
+  drawlinechart(alldata.cpi, ".cpi", 3, true, "month", "cpi", "line", 1, ["Value"]);
+  drawlinechart(alldata.retail, ".retail", 5, false, "month", "retail", "line", 1, ["retail"]);
+  drawlinechart(alldata.housePrices, ".rics", 3, false, "month", "rics", "line", 1, ["value"]);
+  drawlinechart(alldata.ftse100, ".ftse100", 6, false, "day", "ftse100", "line", 1, ["value"]);
+  drawlinechart(alldata.unemployment, ".unemployment", 7, true, "month", "unemployment", "line", 1, ["claimantCount"]);
+  drawlinechart(alldata.borrowing, ".borrowing", 7, true, "month", "borrowing", "line", 5, ["Value", "Value2", "Value3", "Value4", "Value5"]);
   drawlinechart(alldata.pmiRics, ".pmi", 5, false, "month", "pmi", "line", 4, [
     "UK",
     "US",
     "China",
     "Eurozone"
   ]);
+  drawlinechart(alldata.transport, ".transport", 2, true, "day", "transport", "line", 2, ["driving","transit"]);
+
 });

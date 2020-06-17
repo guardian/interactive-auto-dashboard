@@ -216,12 +216,54 @@ function drawlinechart(
     }
 
     if (zeroy == true) {
-      y.domain([
-        0,
-        d3array.max(data, function(d) {
-          return d[columnNameArray[0]];
-        })
-      ]);
+      if (numberOfDataSeries == 1) {
+        y.domain([
+          0,
+          d3array.max(data, function(d) {
+            return d[columnNameArray[0]];
+          })
+        ]);
+      } else if (numberOfDataSeries == 3) {
+        var combineddata = data
+          .map(function(d) {
+            return d[columnNameArray[0]];
+          })
+          .concat(
+            data.map(function(d) {
+              return d[columnNameArray[1]];
+            })
+          )
+          .concat(
+            data.map(function(d) {
+              return d[columnNameArray[2]];
+            })
+          );
+        console.log("is this the combined borrowing?");
+        console.log(combineddata);
+        y.domain([
+          0,
+          d3array.max(combineddata, function(d) {
+            return d;
+          })
+        ]);
+      }
+      else if (numberOfDataSeries == 2) {
+        var combineddata = data
+          .map(function(d) {
+            return d[columnNameArray[0]];
+          })
+          .concat(
+            data.map(function(d) {
+              return d[columnNameArray[1]];
+            })
+          );
+        y.domain([
+          0,
+          d3array.max(combineddata, function(d) {
+            return d;
+          })
+        ]);
+      }
     } else {
       if (numberOfDataSeries == 1) {
         y.domain(
@@ -262,6 +304,26 @@ function drawlinechart(
               return d[columnNameArray[3]];
             })
           );
+        y.domain(d3array.extent(combineddata), function(d) {
+          return d;
+        });
+      } else if (numberOfDataSeries == 3) {
+        var combineddata = data
+          .map(function(d) {
+            return d[columnNameArray[0]];
+          })
+          .concat(
+            data.map(function(d) {
+              return d[columnNameArray[1]];
+            })
+          )
+          .concat(
+            data.map(function(d) {
+              return d[columnNameArray[2]];
+            })
+          );
+        console.log("is this the combined borrowing?");
+        console.log(combineddata);
         y.domain(d3array.extent(combineddata), function(d) {
           return d;
         });
@@ -391,8 +453,10 @@ function drawlinechart(
 
     if (numberOfDataSeries > 2) {
       if (selector == ".borrowing") {
-        var line3data = data.filter(d => d.Value3)
-      } else {var line3data = data}
+        var line3data = data.filter(d => d.Value3);
+      } else {
+        var line3data = data;
+      }
       g.append("path")
         .datum(line3data)
         .attr("fill", "none")
@@ -411,9 +475,11 @@ function drawlinechart(
     }
 
     if (numberOfDataSeries > 3) {
-        if (selector == ".borrowing") {
-            var line4data = data.filter(d => d.Value3)
-          } else {var line4data = data}
+      if (selector == ".borrowing") {
+        var line4data = data.filter(d => d.Value3);
+      } else {
+        var line4data = data;
+      }
       g.append("path")
         .datum(line4data)
         .attr("fill", "none")
@@ -422,7 +488,7 @@ function drawlinechart(
         .attr("stroke-linecap", "round")
         .attr("stroke-width", 2)
         .attr("d", line4)
-        .attr("id","line4");
+        .attr("id", "line4");
     }
 
     if (numberOfDataSeries > 4) {
@@ -460,18 +526,79 @@ d3request.json(dataurl, function(d) {
   //data, selector, ticks, zeroy, interval, destination, chartType, numberOfDataSeries
   // ie: 'sheet', target div, number of ticks, set Y axis to zero?, timescale, target div again without the dot, type of chart, number of values, name of columns)
 
-  drawlinechart(alldata.cpi, ".cpi", 3, true, "month", "cpi", "line", 1, ["Value"]);
-  drawlinechart(alldata.retail, ".retail", 5, false, "month", "retail", "line", 1, ["retail"]);
-  drawlinechart(alldata.housePrices, ".rics", 3, false, "month", "rics", "line", 1, ["value"]);
-  drawlinechart(alldata.ftse100, ".ftse100", 6, false, "day", "ftse100", "line", 1, ["value"]);
-  drawlinechart(alldata.unemployment, ".unemployment", 7, true, "month", "unemployment", "line", 1, ["claimantCount"]);
-  drawlinechart(alldata.borrowing, ".borrowing", 7, true, "month", "borrowing", "line", 5, ["Value", "Value2", "Value3", "Value4", "Value5"]);
+  drawlinechart(alldata.cpi, ".cpi", 3, true, "month", "cpi", "line", 1, [
+    "Value"
+  ]);
+  drawlinechart(
+    alldata.retail,
+    ".retail",
+    5,
+    false,
+    "month",
+    "retail",
+    "line",
+    1,
+    ["retail"]
+  );
+  drawlinechart(
+    alldata.housePrices,
+    ".rics",
+    3,
+    false,
+    "month",
+    "rics",
+    "line",
+    1,
+    ["value"]
+  );
+  drawlinechart(
+    alldata.ftse100,
+    ".ftse100",
+    6,
+    false,
+    "day",
+    "ftse100",
+    "line",
+    1,
+    ["value"]
+  );
+  drawlinechart(
+    alldata.unemployment,
+    ".unemployment",
+    7,
+    true,
+    "month",
+    "unemployment",
+    "line",
+    1,
+    ["claimantCount"]
+  );
+  drawlinechart(
+    alldata.borrowing,
+    ".borrowing",
+    7,
+    true,
+    "month",
+    "borrowing",
+    "line",
+    3,
+    ["Value", "Value2", "Value3"]
+  );
   drawlinechart(alldata.pmiRics, ".pmi", 5, false, "month", "pmi", "line", 4, [
     "UK",
     "US",
     "China",
     "Eurozone"
   ]);
-  drawlinechart(alldata.transport, ".transport", 2, true, "day", "transport", "line", 2, ["driving","transit"]);
-
+  drawlinechart(
+    alldata.transport,
+    ".transport",
+    2,
+    true,
+    "day",
+    "transport",
+    "line",
+    2,
+    ["driving", "transit"]
+  );
 });

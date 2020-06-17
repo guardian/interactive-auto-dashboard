@@ -51,19 +51,6 @@
             background-color:#cc0a11;
         }
 
-        &.ad2018 {
-            background-color:rgb(0, 178, 255);
-        }
-        &.ad2017 {
-            background-color: #056da1;
-        }
-        &.ad2016 {
-            background-color:#f5be2c;
-        }
-        &.ad2015 {
-            background-color:#767676;
-        }
-
 
         &.gbpeur{
             background-color: #056da1;
@@ -168,14 +155,69 @@
     }
 }
 
-
-#line3 {
-    stroke: green;
+.transport {
+    #line1 {
+        stroke: #056da1;
+    }
+    #line2 {
+        stroke: #cc0a11;
+    }
 }
 
-#line3 {
-    stroke: rebeccapurple;
+.pmi {
+    #line1 {
+        stroke: #056da1;
+    }
+    .china {
+        background-color:  #056da1;
+
+    }
+    #line2 {
+        stroke: #cc0a11;
+    }
+    .us {
+        background-color: #cc0a11;
+    }
+
+    #line3 {
+        stroke: #ff7f0f;
+    }
+    .eurozone {
+        background-color: #ff7f0f;
+    }
+    #line4 {
+        stroke:#90dcff;
+    }
+    .uk     {
+        background-color : #90dcff;
+    }
 }
+
+
+.borrowing {
+
+    #line3 {
+        stroke: #cc0a11;
+    }
+    .ad2020 {
+        background-color:#cc0a11;
+    }
+
+    #line2 {
+        stroke:#056da1;
+    }
+    .ad2019 {
+        background-color: #056da1;
+    }
+
+    #line1 {
+        stroke:#767676;
+    }
+    .ad2018 {
+        background-color:#767676; 
+    }
+}
+
 
 svg {
     overflow: visible !important;

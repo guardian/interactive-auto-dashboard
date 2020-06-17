@@ -405,11 +405,12 @@ function drawlinechart(
       g.append("path")
         .datum(data)
         .attr("fill", "none")
-        .attr("stroke", "red")
+        .attr("stroke", "#cc0a11")
         .attr("stroke-linejoin", "round")
         .attr("stroke-linecap", "round")
         .attr("stroke-width", 2)
-        .attr("d", line);
+        .attr("d", line)
+        .attr("id","line1");
     } else if (chartType == "bar") {
       g.selectAll(".bar")
         .data(data)
@@ -438,17 +439,11 @@ function drawlinechart(
       g.append("path")
         .datum(data)
         .attr("fill", "none")
-        .attr("stroke", function() {
-          if (selector == ".borrowing") {
-            return "#f5be2c";
-          } else {
-            return "#056da1";
-          }
-        })
         .attr("stroke-linejoin", "round")
         .attr("stroke-linecap", "round")
         .attr("stroke-width", 2)
-        .attr("d", line2);
+        .attr("d", line2)
+        .attr("id", "line2");
     }
 
     if (numberOfDataSeries > 2) {

@@ -364,7 +364,7 @@ function drawlinechart(
         .call(
           d3axis
             .axisBottom(x)
-            .ticks(3)
+            .ticks(2)
             .tickFormat(d3time.timeFormat("%b %Y"))
         );
     }

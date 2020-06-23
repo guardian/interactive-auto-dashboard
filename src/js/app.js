@@ -596,4 +596,15 @@ d3request.json(dataurl, function(d) {
     2,
     ["driving", "transit"]
   );
+  drawlinechart(
+    alldata.gdp,
+    ".gdp",
+    2,
+    false,
+    "month",
+    "gdp",
+    "line",
+    1,
+    ["value"]
+  );
 });

@@ -238,8 +238,6 @@ function drawlinechart(
               return d[columnNameArray[2]];
             })
           );
-        console.log("is this the combined borrowing?");
-        console.log(combineddata);
         y.domain([
           0,
           d3array.max(combineddata, function(d) {
@@ -322,8 +320,6 @@ function drawlinechart(
               return d[columnNameArray[2]];
             })
           );
-        console.log("is this the combined borrowing?");
-        console.log(combineddata);
         y.domain(d3array.extent(combineddata), function(d) {
           return d;
         });
@@ -378,8 +374,9 @@ function drawlinechart(
           .ticks(ticks)
           .tickSize(-innerwidth - 40)
       );
-
-    g.append("g")
+// only add a zero line if zero is in the domain
+if (y.domain[0] == 0 || y.domain[0] < 0) {
+  g.append("g")
       .attr("class", "gv-zero-line")
       .attr("transform", "translate(-40,0)")
       .call(
@@ -390,6 +387,8 @@ function drawlinechart(
           .tickFormat("")
       );
 
+}
+  
     if (selector == ".borrowing") {
       g.append("g")
         .attr("transform", "translate(0," + innerheight + ")")

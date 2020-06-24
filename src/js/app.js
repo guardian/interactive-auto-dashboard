@@ -83,6 +83,7 @@ function drawlinechart(
 
     var line = d3
       .line()
+      .defined(d => !isNaN(d[columnNameArray[0]]))
       .x(function(d) {
         return x(d.Date);
       })
@@ -93,6 +94,7 @@ function drawlinechart(
     if (numberOfDataSeries > 1) {
       var line2 = d3
         .line()
+        .defined(d => !isNaN(d[columnNameArray[1]]))
         .x(function(d) {
           return x(d.Date);
         })

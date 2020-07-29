@@ -581,10 +581,10 @@ d3request.json(dataurl, function(d) {
     ["Value", "Value2", "Value3"]
   );
   drawlinechart(alldata.pmiRics, ".pmi", 5, false, "month", "pmi", "line", 4, [
-    "UK",
-    "US",
     "China",
-    "Eurozone"
+    "US",
+    "Eurozone",
+    "UK"
   ]);
   drawlinechart(
     alldata.transport,

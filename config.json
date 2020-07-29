@@ -1,9 +1,13 @@
 {
-    "title": "Corona dashboard August 2020",
+    "title": "Corona dashboard July 2020",
     "docData": "",
-    "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1wGzuKFCKkgI4NeQF8K6f5jvUgayMWY3Ru_nOlczHQ-A.json",
-    "path": "2020/08/corona-dashboard-auto",
+    "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1XCxCyVfH-dzsEFG5mtljztM5LNdpRnq3tz6-HCzkjDY.json",
+    "path": "2020/07/corona-dashboard-auto",
     "previousEditions": [
+        {   "title": "Corona dashboard August 2020",
+            "docData": "",
+            "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1wGzuKFCKkgI4NeQF8K6f5jvUgayMWY3Ru_nOlczHQ-A.json",
+            "path": "2020/08/corona-dashboard-auto"},
         {
             "title": "Corona dashboard July 2020",
             "docData": "",

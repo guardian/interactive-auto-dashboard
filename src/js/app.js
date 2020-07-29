@@ -561,8 +561,8 @@ d3request.json(dataurl, function(d) {
   drawlinechart(
     alldata.unemployment,
     ".unemployment",
-    7,
-    true,
+    5,
+    false,
     "month",
     "unemployment",
     "line",

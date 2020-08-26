@@ -1,7 +1,5 @@
-import axios from "axios";
-import { selection, select, selectAll } from "d3-selection";
+import {  select } from "d3-selection";
 import * as d3 from "d3-shape";
-//import * as d3time from 'd3-time'
 import * as d3time from "d3-time-format";
 import * as d3scale from "d3-scale";
 import * as d3request from "d3-request";
@@ -28,7 +26,6 @@ function drawlinechart(
   if (destinationdiv != null) {
     var destwidth = destinationdiv.clientWidth;
     var altdestwidth = destinationdiv.getBoundingClientRect().width;
-    // console.log(`destwidth: ${destwidth}, altdestwidth: ${altdestwidth}`);
   }
 
   var svg = select("svg" + selector),
@@ -43,13 +40,12 @@ function drawlinechart(
 
   svg.attr("width", outerwidth).attr("height", outerheight);
 
-  // if (selector == ".borrowing") {
-  //     var parseTime = d3time.timeParse("%b");
-  // } else
+  var parseTime;
+
   if (interval == "month") {
-    var parseTime = d3time.timeParse("%b %Y");
+    parseTime = d3time.timeParse("%b %Y");
   } else if (interval == "day") {
-    var parseTime = d3time.timeParse("%e-%b-%Y");
+    parseTime = d3time.timeParse("%e-%b-%Y");
   }
 
   try {
@@ -142,65 +138,6 @@ function drawlinechart(
             return y(d[columnNameArray[4]]);
           }
         });
-    }
-
-    if (interval == "month") {
-      try {
-        var june2016 = data.filter(function(d) {
-          return d.Date.getMonth() == 5 && d.Date.getFullYear() == 2016;
-        });
-      } catch (err) {
-        console.log(data);
-      }
-    } else if (interval == "day") {
-      var june2016 = data.filter(function(d) {
-        return (
-          d.Date.getMonth() == 5 &&
-          d.Date.getFullYear() == 2016 &&
-          d.Date.getDate() == 23
-        );
-      });
-    }
-
-    if (interval == "month") {
-      var june2017 = data.filter(function(d) {
-        return d.Date.getMonth() == 5 && d.Date.getFullYear() == 2017;
-      });
-    } else if (interval == "day") {
-      var june2017 = data.filter(function(d) {
-        return (
-          d.Date.getMonth() == 5 &&
-          d.Date.getFullYear() == 2017 &&
-          d.Date.getDate() == 23
-        );
-      });
-    }
-
-    if (interval == "month") {
-      var june2018 = data.filter(function(d) {
-        return d.Date.getMonth() == 5 && d.Date.getFullYear() == 2018;
-      });
-    } else if (interval == "day") {
-      var june2018 = data.filter(function(d) {
-        return (
-          d.Date.getMonth() == 5 &&
-          d.Date.getFullYear() == 2018 &&
-          d.Date.getDate() == 23
-        );
-      });
-    }
-    if (interval == "month") {
-      var june2019 = data.filter(function(d) {
-        return d.Date.getMonth() == 5 && d.Date.getFullYear() == 2019;
-      });
-    } else if (interval == "day") {
-      var june2019 = data.filter(function(d) {
-        return (
-          d.Date.getMonth() == 5 &&
-          d.Date.getFullYear() == 2019 &&
-          d.Date.getDate() == 24
-        );
-      });
     }
 
     if (chartType == "line") {
@@ -329,34 +266,6 @@ function drawlinechart(
     }
 
     if (selector != ".borrowing") {
-      // g.append("g")
-      //     .attr("class", "gv-brexit-tick")
-      //     .attr("transform", "translate(0," + innerheight + ")")
-      //     .call(d3axis.axisBottom(x)
-      //         // .tickValues(june2016.map(function (d) {
-      //         //     return d.Date;
-      //         // }))
-      //         .tickFormat(d3time.timeFormat('%b %Y'))
-      //         .tickSize(-innerheight));
-      // // .select(".domain")
-      // //   .remove();
-
-      // g.append("g")
-      //     .attr("transform", "translate(0," + innerheight + ")")
-      //     .call(d3axis.axisBottom(x)
-      //         .tickValues(june2017.map(function (d) {
-      //             return d.Date;
-      //         }))
-      //         .tickFormat(d3time.timeFormat('%b %Y')));
-
-      // g.append("g")
-      //     .attr("transform", "translate(0," + innerheight + ")")
-      //     .call(d3axis.axisBottom(x)
-      //         .tickValues(june2018.map(function (d) {
-      //             return d.Date;
-      //         }))
-      //         .tickFormat(d3time.timeFormat('%b %Y')));
-
       g.append("g")
         .attr("transform", "translate(0," + innerheight + ")")
         .call(

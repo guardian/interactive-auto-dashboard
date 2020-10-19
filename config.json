@@ -1,13 +1,20 @@
 {
-       "title": "Corona dashboard September 2020",
-        "docData": "",
-        "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1riaj1Zn1xySyUA0VlBEC63Bt_SK_yenZLoBPnevMKsk.json",
-        "path": "2020/09/corona-dashboard-auto",
-    "previousEditions": [
-        {   "title": "Corona dashboard August 2020",
+    "title": "Corona dashboard October 2020",
+    "docData": "",
+    "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1j0N5FUjMIaq0JLhLZ40oaxSVFpU_vGOO77wvOdkrWDg.json",
+    "path": "2020/10/corona-dashboard-auto",
+    "previousEditions": [{
+            "title": "Corona dashboard September 2020",
+            "docData": "",
+            "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1riaj1Zn1xySyUA0VlBEC63Bt_SK_yenZLoBPnevMKsk.json",
+            "path": "2020/09/corona-dashboard-auto"
+        },
+        {
+            "title": "Corona dashboard August 2020",
             "docData": "",
             "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1wGzuKFCKkgI4NeQF8K6f5jvUgayMWY3Ru_nOlczHQ-A.json",
-            "path": "2020/08/corona-dashboard-auto"},
+            "path": "2020/08/corona-dashboard-auto"
+        },
         {
             "title": "Corona dashboard July 2020",
             "docData": "",
@@ -25,14 +32,14 @@
             "title": "Auto Brexit dashboard December 2019",
             "docData": "",
             "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1xRUFPlntf6J1nRJIJJPmRyBIHZBl6I89GA8PsZywU8c.json",
-            "path": "2019/12/brexit-dashboard-auto"        
+            "path": "2019/12/brexit-dashboard-auto"
         },
         {
             "title": "Auto Brexit dashboard November 2019",
             "docData": "",
             "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1q-gaEklHrXFqfLqYw0VFzweq3TodAgC8RWoOPEVEKfA.json",
             "path": "2019/11/brexit-dashboard-auto"
-        
+
         },
         {
             "title": "Auto Brexit dashboard October 2019",
@@ -40,10 +47,12 @@
             "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1zxdQTEiEL3J349SeLbdfHTBq-XIgXWiBee-yTlNWhL4.json",
             "path": "2019/10/brexit-dashboard-auto"
         },
-        {    "title": "Auto Brexit dashboard September 2019",
+        {
+            "title": "Auto Brexit dashboard September 2019",
             "docData": "",
             "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1ZuYpu-ENYtzYBpe8IfUu9tnTK2UUAnBzKcOnECm3XsU.json",
-            "path": "2019/09/brexit-dashboard-auto"},
+            "path": "2019/09/brexit-dashboard-auto"
+        },
         {
             "title": "Auto Brexit dashboard August 2019",
             "docData": "",
@@ -74,8 +83,7 @@
             "docData": "",
             "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1qs424NXlPb6AZTliVKVve8CbDt78GUC5W5bAvlPAVbA.json",
             "path": "2019/04/brexit-dashboard-auto"
-        }
-        ,
+        },
         {
             "title": "Auto Brexit dashboard March 2019",
             "docData": "",
@@ -86,13 +94,13 @@
             "title": "Auto Brexit dashboard February 2019",
             "docData": "",
             "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1mKDFZ6sqimsturXxuOA1sMWGUwLJbo0EZthJzjPHJQc.json",
-            "path": "2019/02/brexit-dashboard-auto"        
+            "path": "2019/02/brexit-dashboard-auto"
         },
         {
             "title": "Auto Brexit dashboard January 2019",
             "docData": "",
             "docDataUrl": "https://interactive.guim.co.uk/docsdata-test/1hXBzDYmFKytsJ1MsrL9g0MPfnpWScVlOyd0mrJqszYo.json",
-            "path": "2019/01/brexit-dashboard-auto"        
+            "path": "2019/01/brexit-dashboard-auto"
         },
         {
             "title": "Auto Brexit dashboard December 2018",
